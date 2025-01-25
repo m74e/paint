@@ -121,7 +121,7 @@ const Home = () => {
       text: "Pro",
     },
     {
-      id: "4",
+      id: 4,
       text: "Enterprise",
     },
   ];
@@ -194,7 +194,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="">
+            <div>
               <img className="cursor: pointer;" src="/icon.svg" alt="" />
             </div>
             <div className="hidden  xl:flex gap-x-10 text-white">
@@ -242,17 +242,17 @@ const Home = () => {
                 </button>
               </div>
             </div>
-            <div className="hidden xl:block w-full">
+            <div className="hidden xl:block w-full mt-[85px]">
               <img className="w-[535px]" src="/assets/Rectangle.png" alt="" />
             </div>
           </div>
-          <div className="hidden xl:flex  xl:justify-between xl:relative ">
+          <div className="hidden xl:flex xl:justify-between xl:relative mt-[28px]">
             <div className="mt-[60px]">
               <img src="/assets/building.png" alt="" />
             </div>
             <div className="flex justify-between items-start pb-[20px]">
               <img src="/assets/handShake.png" alt="" />
-              <div className="w-11"></div>
+              <div className="w-36"></div>
             </div>
             <div className="hidden xl:block w-full overlay"></div>
           </div>
@@ -380,13 +380,13 @@ const Home = () => {
             <div className="text-center text-white font-medium xl:text-left xl:font-medium xl:text-[44px] leading-[54px]">
               News
             </div>
-            <div className="hidden xl:block">
+            <div className="hidden xl:block xl:mt-12">
               <button className="bg-[#7951B3]  px-6 p-4 rounded-[200px] text-white">
                 View all news
               </button>
             </div>
           </div>
-          <div className="xl:flex xl:justify-between gap-x-8 items-center">
+          <div className="xl:flex xl:justify-between gap-x-8 items-center xl:mt-5">
             <div className="pt-[68px]">
               <div className="pt-4">
                 <div>
@@ -424,7 +424,7 @@ const Home = () => {
             <div className="pt-10 flex flex-col item gap-y-10">
               {news.map((news) => (
                 <div className="flex gap-4 xl:gap-y-8">
-                  <div className="w-[30%]">
+                  <div className="w-[30%] ">
                     {" "}
                     <Image
                       src={news.img}
@@ -455,7 +455,7 @@ const Home = () => {
           <button className="mt-[29px] py-4 w-full text-white bg-[#7D4283] cursor-pointer rounded-[200px] hover:bg-white hover:text-[#7951B3] xl:hidden ">
             Show all news
           </button>
-          <div className="xl:flex xl:justify-between xl:text-left items-start xl:gap-x-[61px]">
+          <div className="xl:flex xl:justify-between xl:text-left items-start xl:gap-x-[61px] xl:mt-14">
             <div className="mt-[49px] flex flex-col text-center justify-center items-center gap-y-[13px] xl:items-start xl:text-left">
               <h2 className="text-white font-bold text-2xl leading-9">
                 Simple pricing for your Business
@@ -534,7 +534,7 @@ const Home = () => {
             </div>
           </div>
         </Container>
-        <div className="bg-[#7D4283]">
+        <div className="bg-[#7D4283] mt-7">
           <div className="flex overflow-hidden relative scrollbar ">
             <div
               style={{
@@ -545,7 +545,7 @@ const Home = () => {
             >
               {squer.map((s) => (
                 <>
-                  <div >
+                  <div>
                     <div className="w-[314px] h-[326px] text-white bg-[#161616] py-8 pl-[26px] pr-[7px] ">
                       {s.name}
                     </div>
@@ -573,7 +573,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <footer className="pt-8 mt-24 text-center text-white bg-[#7D4283] flex justify-center items-center flex-col">
+        <footer className="pt-8 mt-24 text-center text-white bg-[#7D4283] flex justify-center items-center flex-col xl:text-left xl:mt-28">
           <Container>
             <div className="flex flex-col gap-y-4">
               <div className="font-medium text-2xl leading-[64px]">
@@ -586,68 +586,83 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            <div className="pt-[34px] h-fit flex flex-col gap-y-2">
+            <div className="pt-[34px] h-fit flex flex-col gap-y-2 xl:flex-row xl:gap-x-2">
               <input
-                className="py-3 px-5 rounded-[200px] text-[#161616] bg-white w-full outline-none"
+                className="py-3 px-5 rounded-[200px] text-[#161616] bg-white w-full outline-none xl:w-[349px]"
                 type="text"
                 placeholder="Your email"
               />
-              <button className="font-medium text-lg leading-[24px] py-3 px-5 rounded-[200px] bg-[#161616] w-full">
+              <button className="font-medium text-lg leading-[24px] py-3 px-5 rounded-[200px] bg-[#161616] w-full xl:w-[157px]">
                 register now
               </button>
             </div>
-            <div className="mt-[70px]">
-              <img src="/icon.svg" alt="" />
+            <div className="xl:flex xl:justify-between">
+              <div className="xl:flex xl:gap-x-[67px] mt-[70px]">
+                <div className="flex items-start cursor-pointer">
+                  <img src="/icon.svg" alt="Icon" />
+                </div>
+                <div className="flex justify-between w-full text-left mt-[27px]">
+                  <div className="flex flex-col gap-y-3 text-white">
+                    <div className="font-medium text-base leading-6">
+                      The company
+                    </div>
+                    <div className="font-normal text-base leading-6">
+                      Who are we
+                    </div>
+                    <div className="font-normal text-base leading-6">
+                      Services
+                    </div>
+                    <div className="font-normal text-base leading-6">
+                      Jobs{" "}
+                      <span className="font-Inter text-xs leading-4 xl:bg-[#000000] xl:px-1 xl:py-[1px] xl:rounded-[99px]">
+                        12
+                      </span>
+                    </div>
+                    <div className="font-normal text-base leading-6">
+                      Branches
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-y-3 text-left">
+                    <div className="font-medium text-base leading-6">
+                      Help center
+                    </div>
+                    <div className="font-normal text-base leading-6">
+                      Common questions
+                    </div>
+                    <div className="font-normal text-base leading-6">
+                      Services
+                    </div>
+                    <div className="font-normal text-base leading-6">
+                      Contact us
+                    </div>
+                    <div className="font-normal text-base leading-6">
+                      Register as merchant
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-[41px] flex justify-start flex-col gap-y-[9px]">
+                <div className="pl-1 w-[150px] flex items-center gap-x-[9px] bg-white bg-opacity-25 rounded-[59px] cursor-pointer xl:w-64">
+                  <div className="bg-white rounded-full">
+                    <img src="/social/facebook.svg" alt="facebook" />
+                  </div>
+                  <div className="py-[6px]">Facebook</div>
+                </div>
+                <div className="pl-1 w-[150px] flex items-center gap-x-[9px] bg-white bg-opacity-25 rounded-[59px] cursor-pointer xl:w-64">
+                  <div className="bg-white rounded-full">
+                    <img src="/social/insta.svg" alt="instagram" />
+                  </div>
+                  <div className="py-[6px]">Instagram</div>
+                </div>
+                <div className="pl-1 w-[150px] flex items-center gap-x-[9px] bg-white bg-opacity-25 rounded-[59px] cursor-pointer xl:w-64">
+                  <div className="bg-white rounded-full">
+                    <img src="/social/linkedin.svg" alt="linkedin" />
+                  </div>
+                  <div className="py-[6px] xl:">LinkedIn</div>
+                </div>
+              </div>{" "}
             </div>
-            <div className="mt-7 flex justify-between text-left">
-              <div className="flex flex-col gap-y-3 text-white">
-                <div className="font-medium text-base leading-6">
-                  The company
-                </div>
-                <div className="font-normal text-base leading-6">
-                  Who are we
-                </div>
-                <div className="font-normal text-base leading-6">Services</div>
-                <div className="font-normal text-base leading-6">
-                  Jobs <span className="font-Inter text-xs leading-4">12</span>
-                </div>
-                <div className="font-normal text-base leading-6">Branches</div>
-              </div>
-              <div className="flex flex-col gap-y-3 text-left">
-                <div className="font-meduim text-base leading-6">
-                  Help center
-                </div>
-                <div className="font-normal text-base leading-6">
-                  Common questions
-                </div>
-                <div className="font-normal text-base leading-6">Services</div>
-                <div className="font-normal text-base leading-6">
-                  Contact us
-                </div>
-                <div>Register as merchant</div>
-              </div>
-            </div>
-            <div className="mt-[41px] flex justify-start flex-col gap-y-[9px]">
-              <div className="pl-1 w-[150px] flex items-center gap-x-[9px] bg-white bg-opacity-25 rounded-[59px] cursor-pointer">
-                <div className="bg-white rounded-full">
-                  <img src="/social/facebook.svg" alt="facebook" />
-                </div>
-                <div className="py-[6px]">Facebook</div>
-              </div>
-              <div className="pl-1 w-[150px] flex items-center gap-x-[9px] bg-white bg-opacity-25 rounded-[59px] cursor-pointer">
-                <div className="bg-white rounded-full">
-                  <img src="/social/insta.svg" alt="instagram" />
-                </div>
-                <div className="py-[6px]">Instagram</div>
-              </div>
-              <div className="pl-1 w-[150px] flex items-center gap-x-[9px] bg-white bg-opacity-25 rounded-[59px] cursor-pointer">
-                <div className="bg-white rounded-full">
-                  <img src="/social/linkedin.svg" alt="linkedin" />
-                </div>
-                <div className="py-[6px]">LinkedIn</div>
-              </div>
-            </div>
-            <div className="flex justify-center mt-[27px] text-center text-white opacity-80 font-light text-sm leading-5">
+            <div className=" mt-[27px] flex justify-center  text-center text-white opacity-80 font-light text-sm leading-5 ">
               © 2024 Leader Express Delivery Company. All rights reserved.
             </div>
           </Container>
