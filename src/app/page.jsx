@@ -1,19 +1,36 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Container from "@/components/container";
 import dynamic from "next/dynamic";
-import DonutChartCard from "@/components/circle/DonutChartCard";
 import Curls from "@/app/customsIcons/curls";
-// import Lines from "./customsIcons/lines";
-import NetProfitChart from "@/components/profitChart/NetProfitChart";
+import Marquee from "react-fast-marquee";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import SquerSlider from "@/components/SquerSlider";
+
+const DonutChartCard = dynamic(
+  () => import("@/components/circle/DonutChartCard"),
+  {
+    ssr: false,
+  }
+);
+const NetProfitChart = dynamic(
+  () => import("@/components/profitChart/NetProfitChart"),
+  {
+    ssr: false,
+  }
+);
 const ChartBar = dynamic(() => import("@/components/profitChart/chartbar"), {
   ssr: false,
 });
+
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [slider, setSlider] = useState(0);
-  const [isOther, setIsOther] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const sidebarRef = useRef(null);
+
   const partners = [
     {
       id: 1,
@@ -125,43 +142,6 @@ const Home = () => {
       text: "Enterprise",
     },
   ];
-  const squer = [
-    {
-      id: 1,
-      name: "Jonathan Sweeney",
-      img: "/assets/oldMan.png",
-      text: `"I love that model. I [used to have to]
-call all around, and I absolutely love
-that model that you could save me the
-time and headache of doing that."`,
-    },
-    {
-      id: 2,
-      name: "Barbara Cook",
-      img: "/assets/oldWoman.png",
-      text: `"I am so happy with your company.
-Ever since my insurer switched to you, everything and everybody I've spoken to has been extremely, extremely pleasant, helpful, and they listen to my concerns instead of just saying okay!"`,
-    },
-    {
-      id: 3,
-      name: "Jonathan Sweeney",
-      img: "/assets/bigSmileWoman.png",
-      text: `“I just want to thank you for the great
-job you did during my transition to
-oxygen. You unraveled all the
-confusion and the new company is
-wonderful.”`,
-    },
-    {
-      id: 4,
-      name: "Mary Rogers",
-      img: "/assets/oldMan.png",
-      text: `"I love that model. I [used to have to]
-call all around, and I absolutely love
-that model that you could save me the
-time and headache of doing that."`,
-    },
-  ];
 
   const handleToggle = (id) => {
     setIsOpen((prevState) => ({
@@ -169,49 +149,35 @@ time and headache of doing that."`,
       [id]: !prevState[id],
     }));
   };
-  const itemWidth = 300;
-  const sliderBtn = () => {
-    return -slider * itemWidth;
-  };
-  const handleNext = () => {
-    if (slider < squer.length - 1) {
-      setSlider(slider + 1);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    if (isSidebarOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
     }
-  };
-  const handlePrev = () => {
-    if (slider > 0) {
-      setSlider(slider - 1);
-    }
-  };
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSidebarOpen]);
+
   return (
     <>
-      <div id="home" className="bg-[#161616]">
+      <div id="home" className="bg-[#161616] relative">
         <Container>
           <div className="flex justify-between items-center ">
-            {/* header */}
             <div className="xl:hidden">
               <img
-                onClick={() => setIsOther(!isOther)}
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 className="cursor-pointer"
                 src="/others.svg"
                 alt="Toggle Menu"
               />
-              <div
-                className={`${
-                  isOther ? "block" : "hidden"
-                } gap-y-1 bg-white p-1 rounded-lg absolute top-[80px] left-[30px] z-20`}
-              >
-                <div>Home</div>
-                <div>About us</div>
-                <div>Services</div>
-                <div>Branches</div>
-                <div>
-                  Jobs{" "}
-                  <span className="bg-[#7D4283] text-[#F1F1F1] p-1 rounded-[99px]">
-                    12
-                  </span>
-                </div>
-              </div>
             </div>
             <div>
               <img className="cursor: pointer;" src="/icon.svg" alt="" />
@@ -247,9 +213,9 @@ time and headache of doing that."`,
               </div>
               <div className="flex justify-center items-center text-center xl:text-left text-[#FFFFFF] mt-[40px]">
                 Welcome to Focus Marketing Solutions! We're a creative team
-                dedicated to driving your business forward with innovative
+                dedicated to driving your business <br className="hidden xl:block" /> forward with innovative
                 marketing strategies. From digital marketing to social media
-                management, we're here to help you succeed. Let's build
+                management,<br className="hidden xl:block" /> we're here to help you succeed. Let's build
                 something extraordinary together
               </div>
               <div className="mt-[40px] flex gap-4 flex-col xl:flex-row">
@@ -261,7 +227,7 @@ time and headache of doing that."`,
                 </button>
               </div>
             </div>
-            <div className="hidden xl:block w-full mt-[85px]">
+            <div className="hidden xl:block mt-[85px]">
               <img className="w-[535px]" src="/assets/Rectangle.png" alt="" />
             </div>
           </div>
@@ -271,27 +237,33 @@ time and headache of doing that."`,
             </div>
             <div className="flex justify-between items-start pb-[20px]">
               <img src="/assets/handShake.png" alt="" />
-              <div className="w-36"></div>
+              <div className="w-[160px]"></div>
             </div>
             <div className="hidden xl:block w-full overlay"></div>
           </div>
         </Container>
-        <div className="mt-[58px] text-center text-[#FFFFFF] xl:font-medium xl:text-5xl leading-[60px] ">
-          Our partners
-        </div>
-        <div className="mt-4 flex flex-nowrap flex-row justify-start gap-1 overflow-x-auto scrollbar-hide scrollbar xl:mt-16">
-          {partners.map((partner) => (
-            <div
-              key={partner.id}
-              className="flex justify-center items-center gap-1 w-[271px] bg-white rounded-md shrink-0 lg:w-[419px]"
-            >
-              <img
-                className="bg-white w-[52px] "
-                src={partner.img}
-                alt={partner.name || "Partner"}
-              />
-            </div>
-          ))}
+        <div>
+          <div className="mt-[58px] text-center text-[#FFFFFF] xl:font-medium xl:text-5xl leading-[60px] ">
+            Our partners
+          </div>
+          <div className="mt-4 xl:mt-16">
+            <Marquee speed={50} pauseOnHover={true}>
+              {partners.map((partner) => (
+                <div
+                  key={partner.id}
+                  className="flex justify-center items-center gap-4 ml-4 w-[271px] aspect-[271/57] bg-white rounded-md shrink-0 lg:w-[419px]"
+                >
+                  <Image
+                    className="bg-white object-cover"
+                    src={partner.img}
+                    width={52}
+                    height={52}
+                    alt={partner.name || "Partner"}
+                  />
+                </div>
+              ))}
+            </Marquee>
+          </div>
         </div>
         <Container>
           <div>
@@ -303,7 +275,7 @@ time and headache of doing that."`,
               >
                 About us
               </div>
-
+              <img className="absolute left-0" src="/lines.svg" alt="" />
               <p className=" text-white text-center pt-8 font-norma text-basel z-20 xl:text-left">
                 Welcome to{" "}
                 <span className="text-[#693A70ED] xl:text-[#7D4283ED]">
@@ -375,25 +347,35 @@ time and headache of doing that."`,
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-x-[74px] gap-y-[16px] xl:grid-cols-1">
-                  {philosophy.map((philosophy) => (
-                    <div className="flex flex-col gap-4 xl:gap-y-2 ">
+                  {philosophy.map((item) => (
+                    <div
+                      key={item.id}
+                      className="flex flex-col gap-4 xl:gap-y-2"
+                    >
                       <div className=" text-[#ffffff] font-normal text-[27px] leading-[60px]">
-                        {philosophy.number}
+                        {item.number}
                       </div>
-                      <div className="text-[#646A69]">{philosophy.text}</div>
+                      <div className="text-[#646A69]">{item.text}</div>
                     </div>
                   ))}
                 </div>{" "}
               </div>
             </div>
           </div>
-          <div className="mt-[64px] text-center text-white xl:text-left">
+          <div className=" mt-[64px] text-center text-white xl:text-left xl:font-semibold text-[34px] leading-[36px] xl:pl-6">
             Our charts
           </div>
-          <div className="xl:flex xl:gap-x-12 xl:w-full">
-            <ChartBar />
-            <NetProfitChart />
-            <DonutChartCard />
+          <div className="xl:flex items-start justify-start gap-8 ">
+            <div>
+              <ChartBar />
+            </div>
+            <div>
+              <NetProfitChart />
+            </div>
+            <div>
+              {" "}
+              <DonutChartCard />
+            </div>
           </div>
           <div className=" flex justify-center xl:justify-between xl:items-center xl:mt-5">
             <div className="text-center text-white font-medium xl:text-left xl:font-medium xl:text-[44px] leading-[54px]">
@@ -441,12 +423,12 @@ time and headache of doing that."`,
               </div>
             </div>
             <div className="pt-10 flex flex-col item gap-y-10">
-              {news.map((news) => (
-                <div className="flex gap-4 xl:gap-y-8">
+              {news.map((newsItem) => (
+                <div key={newsItem.id} className="flex gap-4 xl:gap-y-8">
                   <div className="w-[30%] ">
                     {" "}
                     <Image
-                      src={news.img}
+                      src={newsItem.img}
                       alt="speaker girl"
                       width={200}
                       height={200}
@@ -488,120 +470,69 @@ time and headache of doing that."`,
 
             <div className="xl:w-[50%]">
               {simplePricing.map((item) => (
-                <>
+                <div
+                  key={item.id}
+                  className={`${
+                    isOpen[item.id] ? "bg-[#7D4283]" : "bg-[#1A1A1A]"
+                  } relative rounded-md mt-[17px] overflow-hidden cursor-pointer`}
+                >
                   <div
-                    key={item.id}
-                    className={`${
-                      isOpen[item.id] ? "bg-[#7D4283] " : "bg-[#1A1A1A]"
-                    }  relative rounded-md mt-[17px] overflow-hidden cursor-pointer`}
+                    onClick={() => handleToggle(item.id)}
+                    className="flex flex-col gap-y-4 h-full w-full"
                   >
                     <div
-                      onClick={() => handleToggle(item.id)}
-                      className="flex flex-col gap-y-4 h-full w-full"
+                      className={` ${
+                        isOpen[item.id] ? "bg-[#7D4283] " : "bg-[#1A1A1A]"
+                      } bg-[#1A1A1A] rounded-t-md flex items-center justify-between w-full p-4 xl:p-[22px]"}`}
                     >
-                      <div
-                        className={` ${
-                          isOpen[item.id] ? "bg-[#7D4283] " : "bg-[#1A1A1A]"
-                        } bg-[#1A1A1A] rounded-t-md flex items-center justify-between w-full p-4 xl:p-[22px]"}`}
-                      >
-                        <div className="text-white ">{item.text}</div>
-                        <div>
-                          <img
-                            src={
-                              isOpen[item.id]
-                                ? "/upArrow.svg"
-                                : "/downArrow.svg"
-                            }
-                            alt="Arrow Icon"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className={`${
-                        isOpen[item.id]
-                          ? "bg-[#7D4283] block"
-                          : "bg-[#1A1A1A] hidden"
-                      } rounded-b-md text-white w-full p-4 }`}
-                    >
+                      <div className="text-white ">{item.text}</div>
                       <div>
-                        {" "}
-                        Pro account gives you freedom with uploading HD videos
-                        and can also meet all your business needs apasih kamu
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <div className="font-normal text-[19px] leading-[28px]">
-                          $ <span>123</span>{" "}
-                          <span className="opacity-[68%]">/month</span>
-                        </div>
-                        <div>
-                          <button className="px-4 py-1 rounded-lg cursor-pointer bg-white text-[#161616] font-medium text-[15px] leading-[23px]">
-                            Try 1 month
-                          </button>
-                        </div>
+                        <img
+                          src={
+                            isOpen[item.id] ? "/upArrow.svg" : "/downArrow.svg"
+                          }
+                          alt="Arrow Icon"
+                        />
                       </div>
                     </div>
-                    <Curls
-                      onClick={() => handleToggle(item.id)}
-                      className={`${
-                        isOpen[item.id] ? "block" : "hidden"
-                      } absolute top-0 right-[5px] z-50 xl:top-[5px] xl:left-[200px] }`}
-                    />
                   </div>
-                </>
+                  <div
+                    className={`${
+                      isOpen[item.id]
+                        ? "bg-[#7D4283] block"
+                        : "bg-[#1A1A1A] hidden"
+                    } rounded-b-md text-white w-full p-4 }`}
+                  >
+                    <div>
+                      {" "}
+                      Pro account gives you freedom with uploading HD videos and
+                      can also meet all your business needs apasih kamu
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="font-normal text-[19px] leading-[28px]">
+                        $ <span>123</span>{" "}
+                        <span className="opacity-[68%]">/month</span>
+                      </div>
+                      <div>
+                        <button className="px-4 py-1 rounded-lg cursor-pointer bg-white text-[#161616] font-medium text-[15px] leading-[23px]">
+                          Try 1 month
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <Curls
+                    onClick={() => handleToggle(item.id)}
+                    className={`${
+                      isOpen[item.id] ? "block" : "hidden"
+                    } absolute top-0 right-[5px] z-50 xl:top-[5px] xl:left-[200px] }`}
+                  />
+                </div>
               ))}
             </div>
           </div>
         </Container>
         <div className="bg-[#7D4283] mt-7">
-          <div className="hidden  xl:flex xl:justify-center xl:text-center items-center  py-24 text-white font-normal text-5xl leading-[61px]] ">
-            Our clients openions
-          </div>
-          <div className="flex overflow-hidden relative scrollbar ">
-            <div
-              style={{
-                marginLeft: `${sliderBtn()}px`,
-                transition: "margin-left 0.5s ease-in-out",
-              }}
-              className="bg-[#7D4283] h-[479px] xl:h-[600px] flex justify-center items-center gap-x-[14px]  "
-            >
-              {squer.map((s) => (
-                <>
-                  <div>
-                    <div className="flex flex-col gap-y-[10px] w-[314px] h-[326px] text-white bg-[#161616] py-8 pl-[26px] pr-[7px] rounded-[7px] xl:w-[427px] xl:h-[369px] xl:rounded-[10px]">
-                      <div>
-                        <img src={s.img} alt="" />
-                      </div>
-                      <div className="flex flex-col gap-y-7">
-                        <div className="font-semibold text-lg leading-[14px] ">
-                          {s.name}
-                        </div>
-                        <div>{s.text}</div>
-                      </div>
-                    </div>
-                  </div>
-                </>
-              ))}
-            </div>
-            <div>
-              <button
-                onClick={handleNext}
-                className="absolute bottom-[28px] right-[20px] bg-white border-[1px] rounded-full z-10 cursor-pointer"
-              >
-                <img className="px-4 py-3" src="/rightArrow.svg" alt="" />
-              </button>
-              <button
-                onClick={handlePrev}
-                className="absolute bottom-[28px] left-[20px] bg-white border-[1px] rounded-full z-10 cursor-pointer"
-              >
-                <img
-                  className="px-4 py-3 rotate-180"
-                  src="/rightArrow.svg"
-                  alt=""
-                />
-              </button>
-            </div>
-          </div>
+          <SquerSlider />
         </div>
         <footer className="pt-8 mt-24 text-center text-white bg-[#7D4283] flex justify-center items-center flex-col xl:text-left xl:mt-28 xl:relative">
           <Container>
@@ -688,20 +619,97 @@ time and headache of doing that."`,
                   <div className="bg-white rounded-full">
                     <img src="/social/linkedin.svg" alt="linkedin" />
                   </div>
-                  <div className="py-[6px] ">LinkedIn</div>
+                  <div className="py-[6px] xl:">LinkedIn</div>
                 </div>
               </div>{" "}
             </div>
             <div className=" mt-[27px] flex justify-center  text-center text-white opacity-80 font-light text-sm leading-5 ">
               © 2024 Leader Express Delivery Company. All rights reserved.
             </div>
-            <img
-              className="hidden xl:block absolute left-[10px] bottom-0"
-              src="/footerLines.svg"
-              alt=""
-            />
           </Container>
+          <img
+            className="hidden xl:block absolute left-[10px] bottom-0"
+            src="/footerLines.svg"
+            alt=""
+          />
         </footer>
+        <div
+          ref={sidebarRef}
+          className={`${
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } fixed top-0 left-0 h-full w-[80%] bg-[#1E1E1E] shadow-xl z-30 transform transition-transform duration-300 ease-in-out`}
+        >
+          <div className="p-4">
+            <div className="flex justify-end">
+              <button
+                onClick={() => setIsSidebarOpen(false)}
+                className="text-white focus:outline-none"
+              >
+                <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                  <path
+                    fillRule="evenodd"
+                    d="M18.293 5.293a1 1 0 011.414 1.414L13.414 12l6.293 6.293a1 1 0 01-1.414 1.414L12 13.414l-6.293 6.293a1 1 0 01-1.414-1.414L10.586 12 4.293 5.293a1 1 0 011.414-1.414L12 10.586l6.293-6.293z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <nav className="mt-8">
+              <div className="flex flex-col gap-y-4 text-white">
+                <a
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                  href="#home"
+                  className="block py-2 px-4 hover:bg-gray-700 rounded"
+                >
+                  Home
+                </a>
+                <a
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                  href="#about"
+                  className="block py-2 px-4 hover:bg-gray-700 rounded"
+                >
+                  About us
+                </a>
+                <a
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                  href="#services"
+                  className="block py-2 px-4 hover:bg-gray-700 rounded"
+                >
+                  Services
+                </a>
+                <a
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                  href="#Branches"
+                  className="block py-2 px-4 hover:bg-gray-700 rounded"
+                >
+                  Branches
+                </a>
+                <a
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                  className="block py-2 px-4 hover:bg-gray-700 rounded cursor-pointer flex items-center justify-between"
+                >
+                  Jobs
+                  <span className="bg-[#7D4283] text-[#F1F1F1] px-2 py-1 rounded-[99px] text-xs">
+                    12
+                  </span>
+                </a>
+              </div>
+              <div className="mt-8 flex flex-col gap-y-2">
+                <button className="bg-transparent px-5 py-4 text-white border border-white rounded-[200px] hover:bg-white hover:text-[#161616]">
+                  Contact us
+                </button>
+                <button className="bg-[#7D4283] px-5 py-4 text-white rounded-[200px]">
+                  Join us
+                </button>
+              </div>
+            </nav>
+          </div>
+        </div>
+        {isSidebarOpen && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-20 xl:hidden"></div>
+        )}{" "}
+        {/* Optional overlay */}
       </div>
     </>
   );

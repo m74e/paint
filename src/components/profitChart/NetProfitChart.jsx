@@ -9,7 +9,7 @@ const data = [
 
 const ProfitChart = () => {
   return (
-    <div className="hidden relative p-[20px] pr-10 mt-5 bg-[#1E1E1E] rounded-lg xl:flex flex-col justify-center drop-shadow-[0_4px_4px_#0000001A;] max-w-[700px] mx-auto ">
+    <div className="hidden relative p-[20px] pr-10 mt-5 bg-[#1E1E1E] rounded-lg xl:flex xl:rounded-none flex-col justify-center drop-shadow-[0_4px_4px_#0000001A;] max-w-[700px] mx-auto ">
       <h2 className="text-2xl bg-[#1E1E1E] font-bold text-white mb-4">
         Net Profit
       </h2>
@@ -20,7 +20,7 @@ const ProfitChart = () => {
           <XAxis dataKey="name" stroke="#fff" />
           <YAxis stroke="#fff" />
           <Tooltip
-            contentStyle={{ backgroundColor: "#333", border: "none" }}
+            contentStyle={{ backgroundColor: "#fff", border: "none" }}
             labelStyle={{ color: "#fff" }}
           />
           <Bar
@@ -29,26 +29,6 @@ const ProfitChart = () => {
             fill={({ payload }) => payload.fill}
           />
         </BarChart>
-        <div className="absolute flex items-center gap-x-4 bottom-11 left-16">
-          <div className="flex gap-x-1 items-center">
-            <div className="bg-[#7D4283] rounded-full w-[10px] h-[10px]"></div>
-            <div className="font-[Inter] text-xs leading-[15px] font-normal text-white">
-              Product 1
-            </div>
-          </div>
-          <div className="flex gap-x-1 items-center ">
-            <div className="bg-[#F3722C] rounded-full w-[10px] h-[10px]"></div>
-            <div className="font-[Inter] text-xs leading-[15px] font-normal text-white">
-              Product 2
-            </div>
-          </div>
-          <div className="flex gap-x-1 items-center ">
-            <div className="bg-[#4CAF50] rounded-full w-[10px] h-[10px]"></div>
-            <div className="font-[Inter] text-xs leading-[15px] font-normal text-white">
-              Product 3
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
