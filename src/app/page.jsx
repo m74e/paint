@@ -121,8 +121,8 @@ const Home = () => {
       text: "Pro",
     },
     {
-      id: "Enterprise",
-      text: "Based",
+      id: "4",
+      text: "Enterprise",
     },
   ];
   const squer = [
@@ -171,7 +171,7 @@ const Home = () => {
           <div className="flex justify-between items-center ">
             {/* header */}
             <div className="xl:hidden">
-            <img
+              <img
                 onClick={() => setIsOther(!isOther)}
                 className="cursor-pointer"
                 src="/others.svg"
@@ -424,16 +424,16 @@ const Home = () => {
             <div className="pt-10 flex flex-col item gap-y-10">
               {news.map((news) => (
                 <div className="flex gap-4 xl:gap-y-8">
-                  <div className="w-[40%]">
+                  <div className="w-[30%]">
                     {" "}
                     <Image
                       src={news.img}
                       alt="speaker girl"
-                      width={500}
-                      height={500}
+                      width={200}
+                      height={200}
                     />
                   </div>
-                  <div className="flex flex-col w-[60%] gap-y-14">
+                  <div className="flex flex-col w-[50%] gap-y-14">
                     {" "}
                     <h4 className="text-white font-medium text-base leading-[21px]">
                       We incorporate the formation of public partnerships as a
@@ -535,18 +535,18 @@ const Home = () => {
           </div>
         </Container>
         <div className="bg-[#7D4283]">
-          <div className="flex overflow-hidden relative">
+          <div className="flex overflow-hidden relative scrollbar ">
             <div
               style={{
                 marginLeft: `${sliderBtn()}px`,
                 transition: "margin-left 0.5s ease-in-out",
               }}
-              className="bg-[#7D4283] h-[479px] flex justify-center items-center gap-x-[14px] "
+              className="bg-[#7D4283] h-[479px] flex justify-center items-center gap-x-[14px]  "
             >
               {squer.map((s) => (
                 <>
-                  <div>
-                    <div className="w-[314px] h-[326px] text-white bg-[#161616] py-8 pl-[26px] pr-[7px]">
+                  <div >
+                    <div className="w-[314px] h-[326px] text-white bg-[#161616] py-8 pl-[26px] pr-[7px] ">
                       {s.name}
                     </div>
                   </div>
