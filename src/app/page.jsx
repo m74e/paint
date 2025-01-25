@@ -603,7 +603,7 @@ time and headache of doing that."`,
             </div>
           </div>
         </div>
-        <footer className="pt-8 mt-24 text-center text-white bg-[#7D4283] flex justify-center items-center flex-col xl:text-left xl:mt-28">
+        <footer className="pt-8 mt-24 text-center text-white bg-[#7D4283] flex justify-center items-center flex-col xl:text-left xl:mt-28 xl:relative">
           <Container>
             <div className="flex flex-col gap-y-4">
               <div className="font-medium text-2xl leading-[64px]">
@@ -688,13 +688,18 @@ time and headache of doing that."`,
                   <div className="bg-white rounded-full">
                     <img src="/social/linkedin.svg" alt="linkedin" />
                   </div>
-                  <div className="py-[6px] xl:">LinkedIn</div>
+                  <div className="py-[6px] ">LinkedIn</div>
                 </div>
               </div>{" "}
             </div>
             <div className=" mt-[27px] flex justify-center  text-center text-white opacity-80 font-light text-sm leading-5 ">
               © 2024 Leader Express Delivery Company. All rights reserved.
             </div>
+            <img
+              className="hidden xl:block absolute left-[10px] bottom-0"
+              src="/footerLines.svg"
+              alt=""
+            />
           </Container>
         </footer>
       </div>
