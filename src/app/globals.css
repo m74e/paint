@@ -29,6 +29,12 @@
   rotate: 180deg;
 }
 
+.abs{
+  position: absolute;
+  left: 13px;
+  bottom: 10px;
+}
+
 @media (max-width: 900px) {
   .container {
     max-width: 400px;
