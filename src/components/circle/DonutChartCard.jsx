@@ -49,7 +49,7 @@ const DonutChartCard = () => {
 
         
           <div className="flex justify-center">
-            <PieChart width={200} height={210}>
+            <PieChart width={200} height={336}>
               <Pie
                 data={data}
                 dataKey="value"

@@ -1,12 +1,12 @@
 import * as React from "react";
 
-const SvgComponent = ({ opacity = 0.6, ...props }) => (
+const SvgComponent = ({ opacity = 0.4, ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={229}
-    height={159}
+    width={300}
+    height={200}
     fill="none"
-    style={{ opacity }} // Apply dynamic opacity
+    style={{ opacity }} 
     {...props}
   >
     <path
