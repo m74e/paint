@@ -697,7 +697,7 @@ time and headache of doing that."`,
             </div>
           </Container>
           <img
-            className="hidden xl:absolute left-[10px] bottom-0"
+            className="hidden xl:block absolute left-[10px] bottom-0"
             src="/footerLines.svg"
             alt=""
           />
