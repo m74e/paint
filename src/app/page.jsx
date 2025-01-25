@@ -129,18 +129,37 @@ const Home = () => {
     {
       id: 1,
       name: "Jonathan Sweeney",
+      img: "/assets/oldMan.png",
+      text: `"I love that model. I [used to have to]
+call all around, and I absolutely love
+that model that you could save me the
+time and headache of doing that."`,
     },
     {
       id: 2,
       name: "Barbara Cook",
+      img: "/assets/oldWoman.png",
+      text: `"I am so happy with your company.
+Ever since my insurer switched to you, everything and everybody I've spoken to has been extremely, extremely pleasant, helpful, and they listen to my concerns instead of just saying okay!"`,
     },
     {
       id: 3,
       name: "Jonathan Sweeney",
+      img: "/assets/bigSmileWoman.png",
+      text: `“I just want to thank you for the great
+job you did during my transition to
+oxygen. You unraveled all the
+confusion and the new company is
+wonderful.”`,
     },
     {
       id: 4,
       name: "Mary Rogers",
+      img: "/assets/oldMan.png",
+      text: `"I love that model. I [used to have to]
+call all around, and I absolutely love
+that model that you could save me the
+time and headache of doing that."`,
     },
   ];
 
@@ -546,8 +565,16 @@ const Home = () => {
               {squer.map((s) => (
                 <>
                   <div>
-                    <div className="w-[314px] h-[326px] text-white bg-[#161616] py-8 pl-[26px] pr-[7px] ">
-                      {s.name}
+                    <div className="flex flex-col gap-y-[10px] w-[314px] h-[326px] text-white bg-[#161616] py-8 pl-[26px] pr-[7px] rounded-[7px] xl:w-[427px] xl:h-[369px] xl:rounded-[10px]">
+                      <div>
+                        <img src={s.img} alt="" />
+                      </div>
+                      <div className="flex flex-col gap-y-7">
+                        <div className="font-semibold text-lg leading-[14px] ">
+                          {s.name}
+                        </div>
+                        <div>{s.text}</div>
+                      </div>
                     </div>
                   </div>
                 </>
@@ -573,7 +600,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <footer className="pt-8 mt-24 text-center text-white bg-[#7D4283] flex justify-center items-center flex-col xl:text-left xl:mt-28">
+        <footer className="pt-8 mt-24 text-center text-white bg-[#7D4283] flex justify-center items-center flex-col xl:text-left xl:mt-28 xl:relative">
           <Container>
             <div className="flex flex-col gap-y-4">
               <div className="font-medium text-2xl leading-[64px]">
@@ -596,13 +623,16 @@ const Home = () => {
                 register now
               </button>
             </div>
-            <div className="xl:flex xl:justify-between">
-              <div className="xl:flex xl:gap-x-[67px] mt-[70px]">
+            <div className="xl:flex xl:justify-between ">
+              <div className="xl:flex xl:gap-x-[67px] mt-[70px] ">
                 <div className="flex items-start cursor-pointer">
-                  <img src="/icon.svg" alt="Icon" />
+                  <a href="#home">
+                    {" "}
+                    <img src="/icon.svg" alt="Icon" />
+                  </a>
                 </div>
                 <div className="flex justify-between w-full text-left mt-[27px]">
-                  <div className="flex flex-col gap-y-3 text-white">
+                  <div className="flex flex-col gap-y-3 text-white ">
                     <div className="font-medium text-base leading-6">
                       The company
                     </div>
@@ -666,6 +696,11 @@ const Home = () => {
               © 2024 Leader Express Delivery Company. All rights reserved.
             </div>
           </Container>
+          <img
+            className="hidden xl:absolute left-[10px] bottom-0"
+            src="/footerLines.svg"
+            alt=""
+          />
         </footer>
       </div>
     </>
