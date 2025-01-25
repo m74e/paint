@@ -390,7 +390,7 @@ time and headache of doing that."`,
           <div className="mt-[64px] text-center text-white xl:text-left">
             Our charts
           </div>
-          <div className="xl:flex xl:gap-x-12 xl:w-full">
+          <div className="xl:flex xl:gap-x-12 xl:w-full xl:items-center">
             <ChartBar />
             <NetProfitChart />
             <DonutChartCard />
@@ -554,13 +554,16 @@ time and headache of doing that."`,
           </div>
         </Container>
         <div className="bg-[#7D4283] mt-7">
+          <div className="hidden  xl:flex xl:justify-center xl:text-center items-center  py-24 text-white font-normal text-5xl leading-[61px]] ">
+            Our clients openions
+          </div>
           <div className="flex overflow-hidden relative scrollbar ">
             <div
               style={{
                 marginLeft: `${sliderBtn()}px`,
                 transition: "margin-left 0.5s ease-in-out",
               }}
-              className="bg-[#7D4283] h-[479px] flex justify-center items-center gap-x-[14px]  "
+              className="bg-[#7D4283] h-[479px] xl:h-[600px] flex justify-center items-center gap-x-[14px]  "
             >
               {squer.map((s) => (
                 <>
