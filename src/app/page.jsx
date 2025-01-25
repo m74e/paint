@@ -600,7 +600,7 @@ time and headache of doing that."`,
             </div>
           </div>
         </div>
-        <footer className="pt-8 mt-24 text-center text-white bg-[#7D4283] flex justify-center items-center flex-col xl:text-left xl:mt-28 xl:relative">
+        <footer className="pt-8 mt-24 text-center text-white bg-[#7D4283] flex justify-center items-center flex-col xl:text-left xl:mt-28 xl:relative xl:overflow-hidden">
           <Container>
             <div className="flex flex-col gap-y-4">
               <div className="font-medium text-2xl leading-[64px]">
