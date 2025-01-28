@@ -8,7 +8,7 @@ const data = [
 
 const ProfitChart = () => {
   return (
-    <div className="relative p-[11px] pr-5 mt-5 bg-[#1E1E1E] rounded-lg flex flex-col justify-center drop-shadow-[0_4px_4px_#0000001A;] xl:hidden">
+    <div className="relative p-[11px] pr-5 mt-5 bg-[#1E1E1E] rounded-lg flex flex-col justify-center drop-shadow-[0_4px_4px_#0000001A;] h-[351px] xl:hidden">
       <h2 className="text-2xl bg-[#1E1E1E] font-bold text-white mb-4">
         Net Profit
       </h2>
@@ -24,7 +24,7 @@ const ProfitChart = () => {
           />
           <Bar dataKey="profit" barSize={12} />
         </BarChart>
-        <div className="absolute flex items-center gap-x-2 bottom-11 left-16">
+        <div className="absolute flex items-center gap-x-2 bottom-8 left-16 mt-5">
           <div className="flex gap-x-1 items-center">
             <div className="bg-[#7D4283] rounded-full w-[10px] h-[10px]"></div>
             <div className="font-[Inter] text-xs leading-[15px] font-normal text-white">

@@ -5,7 +5,6 @@ import Container from "@/components/container";
 import dynamic from "next/dynamic";
 import Curls from "@/app/customsIcons/curls";
 import Marquee from "react-fast-marquee";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SquerSlider from "@/components/SquerSlider";
@@ -213,10 +212,12 @@ const Home = () => {
               </div>
               <div className="flex justify-center items-center text-center xl:text-left text-[#FFFFFF] mt-[40px]">
                 Welcome to Focus Marketing Solutions! We're a creative team
-                dedicated to driving your business <br className="hidden xl:block" /> forward with innovative
+                dedicated to driving your business{" "}
+                <br className="hidden xl:block" /> forward with innovative
                 marketing strategies. From digital marketing to social media
-                management,<br className="hidden xl:block" /> we're here to help you succeed. Let's build
-                something extraordinary together
+                management,
+                <br className="hidden xl:block" /> we're here to help you
+                succeed. Let's build something extraordinary together
               </div>
               <div className="mt-[40px] flex gap-4 flex-col xl:flex-row">
                 <button className="w-full text-white  bg-[#7D4283] rounded-[200px] xl:w-[102px] xl:py-4">
@@ -267,7 +268,7 @@ const Home = () => {
         </div>
         <Container>
           <div>
-            {" "}
+            <img className="absolute left-0" src="/lines.svg" alt="" />{" "}
             <div className="relative overflow-hidden">
               <div
                 id="about"
@@ -275,7 +276,6 @@ const Home = () => {
               >
                 About us
               </div>
-              <img className="absolute left-0" src="/lines.svg" alt="" />
               <p className=" text-white text-center pt-8 font-norma text-basel z-20 xl:text-left">
                 Welcome to{" "}
                 <span className="text-[#693A70ED] xl:text-[#7D4283ED]">
@@ -687,7 +687,7 @@ const Home = () => {
                 </a>
                 <a
                   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                  className="block py-2 px-4 hover:bg-gray-700 rounded cursor-pointer flex items-center justify-between"
+                  className="flex py-2 px-4 hover:bg-gray-700 rounded cursor-pointer items-center justify-between"
                 >
                   Jobs
                   <span className="bg-[#7D4283] text-[#F1F1F1] px-2 py-1 rounded-[99px] text-xs">
