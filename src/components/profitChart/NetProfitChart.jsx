@@ -9,7 +9,7 @@ const data = [
 
 const ProfitChart = () => {
   return (
-    <div className="hidden relative p-[20px] pr-10 mt-5 bg-[#1E1E1E] rounded-lg xl:flex xl:rounded-none flex-col justify-center drop-shadow-[0_4px_4px_#0000001A;] max-w-[700px] mx-auto ">
+    <div className="hidden relative p-[20px] pr-10 mt-5 bg-[#1E1E1E] rounded-lg xl:flex xl:rounded-none flex-col justify-center drop-shadow-[0_4px_4px_#0000001A;] max-w-[800px] mx-auto ">
       <h2 className="text-2xl bg-[#1E1E1E] font-bold text-white mb-4">
         Net Profit
       </h2>

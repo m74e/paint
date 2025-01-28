@@ -36,8 +36,8 @@ const DonutChartCard = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center mt-2 dropShadow">
-        <div className="bg-[#1E1E1E] rounded-lg shadow-md w-[355px] flex flex-col px-4 py-5 xl:rounded-none">
+      <div className="flex justify-center items-center mt-5 dropShadow">
+        <div className="bg-[#1E1E1E] rounded-lg shadow-md w-[355px] flex flex-col px-4 py-[19px] xl:rounded-none">
           <div className="text-white text-left text-lg font-semibold mb-1">
             Primary Text
           </div>
